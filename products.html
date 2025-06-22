@@ -1,0 +1,56 @@
+<!-- Filters Sidebar -->
+<div class="col-lg-3 mb-4">
+  <div class="card border-0 shadow-soft" style="background: linear-gradient(135deg, var(--accent-color), var(--primary-color));">
+    <div class="card-header bg-transparent border-0">
+      <h5 class="mb-0 fw-bold text-dark">
+        <i class="fas fa-filter me-2"></i>Filters
+      </h5>
+    </div>
+    <div class="card-body">
+      <!-- Search -->
+      <div class="mb-4">
+        <label class="form-label fw-semibold text-dark">Search Products</label>
+        <input type="text" class="form-control" id="searchInput" placeholder="Search...">
+      </div>
+      
+      <!-- Category Filter -->
+      <div class="mb-4">
+        <label class="form-label fw-semibold text-dark">Category</label>
+        <select class="form-select" id="categoryFilter">
+          <option value="">All Categories</option>
+          <option value="dogs">Dogs</option>
+          <option value="cats">Cats</option>
+          <option value="food">Food</option>
+          <option value="toys">Toys</option>
+          <option value="accessories">Accessories</option>
+        </select>
+      </div>
+      
+      <!-- Price Range -->
+      <div class="mb-4">
+        <label class="form-label fw-semibold text-dark">Price Range</label>
+        <select class="form-select" id="priceFilter">
+          <option value="">All Prices</option>
+          <option value="0-25">$0 - $25</option>
+          <option value="25-50">$25 - $50</option>
+          <option value="50-100">$50 - $100</option>
+          <option value="100+">$100+</option>
+        </select>
+      </div>
+      
+      <!-- Sort -->
+      <div class="mb-4">
+        <label class="form-label fw-semibold text-dark">Sort By</label>
+        <select class="form-select" id="sortFilter">
+          <option value="name">Name</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+        </select>
+      </div>
+      
+      <button class="btn btn-dark w-100" onclick="clearFilters()">
+        <i class="fas fa-times me-2"></i>Clear Filters
+      </button>
+    </div>
+  </div>
+</div>
