@@ -3,221 +3,628 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Bowlfull Buddies</title>
+    <title>Bowlfull Buddies - Welcome</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --bg-color: #f9f6d2;
+            --accent-blue: #c1edff;
+            --highlight-pink: #ffc5e7;
+            --text-dark: #2c3e50;
+            --text-muted: #6c757d;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--bg-color) 0%, #f0ed9a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Animated background elements */
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-paw {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+            font-size: 2rem;
+            color: var(--highlight-pink);
+        }
+
+        .floating-paw:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-paw:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
+        .floating-paw:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
+        .floating-paw:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 1s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-weight: 300;
+            font-size: 1.1rem;
+        }
+
+        /* Main container */
+        .auth-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .auth-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 450px;
+            animation: fadeInUp 1s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .auth-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        /* Tab navigation */
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            background: var(--bg-color);
+            border-radius: 15px;
+            padding: 0.5rem;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: none;
+            background: transparent;
+            border-radius: 10px;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background: var(--accent-blue);
+            color: var(--text-dark);
+            box-shadow: 0 4px 15px rgba(193, 237, 255, 0.4);
+        }
+
+        .tab-btn:hover {
+            background: var(--highlight-pink);
+            color: var(--text-dark);
+        }
+
+        /* Form styles */
+        .form-container {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-control:focus {
+            border-color: var(--highlight-pink);
+            box-shadow: 0 0 0 0.2rem rgba(255, 197, 231, 0.25);
+            background: white;
+        }
+
+        .form-control:hover {
+            border-color: var(--accent-blue);
+        }
+
+        /* Buttons */
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, #a8e6ff 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            width: 100%;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary-custom:hover {
+            background: linear-gradient(135deg, var(--highlight-pink) 0%, #ffb3e1 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 197, 231, 0.4);
+        }
+
+        .btn-primary-custom:active {
+            transform: translateY(0);
+        }
+
+        /* Checkbox and links */
+        .form-check-input:checked {
+            background-color: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        .form-check-input:focus {
+            border-color: var(--highlight-pink);
+            box-shadow: 0 0 0 0.25rem rgba(255, 197, 231, 0.25);
+        }
+
+        .forgot-password {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: var(--highlight-pink);
+            text-decoration: underline;
+        }
+
+        /* Pet type selection */
+        .pet-selection {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .pet-option {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .pet-option:hover {
+            border-color: var(--accent-blue);
+            background: var(--accent-blue);
+        }
+
+        .pet-option.selected {
+            border-color: var(--highlight-pink);
+            background: var(--highlight-pink);
+        }
+
+        .pet-option i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-color);
+            padding: 1.5rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--highlight-pink);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .auth-card {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
+                border-radius: 15px;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .pet-selection {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .footer-links {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 1rem 0;
+            }
+
+            .auth-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Loading state */
+        .btn-loading {
+            position: relative;
+            color: transparent !important;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-primary" href="index.html">
-                <i class="bi bi-heart-fill me-2"></i>Bowlfull Buddies
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="products.html">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                </ul>
+    <!-- Animated background -->
+    <div class="bg-decoration">
+        <div class="floating-paw"><i class="fas fa-paw"></i></div>
+        <div class="floating-paw"><i class="fas fa-paw"></i></div>
+        <div class="floating-paw"><i class="fas fa-paw"></i></div>
+        <div class="floating-paw"><i class="fas fa-paw"></i></div>
+    </div>
 
-                <form class="d-flex me-2">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">Search</button>
-                </form>
-                
-                <div class="d-flex align-items-center">
-                    <a href="login.html" class="btn btn-outline-primary me-2">
-                        <i class="bi bi-person"></i> Login
-                    </a>
-                    <a href="cart.html" class="btn btn-primary position-relative">
-                        <i class="bi bi-bag"></i> Cart
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">
-                            0
-                        </span>
-                    </a>
-                </div>
-            </div>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-heart" style="color: var(--highlight-pink);"></i>
+            Bowlfull Buddies
+            <i class="fas fa-paw" style="color: var(--accent-blue);"></i>
         </div>
-    </nav>
+        <div class="subtitle">Where every pet finds their perfect match</div>
+    </div>
 
-    <!-- Login/Register Section -->
-    <section class="py-5 min-vh-100 d-flex align-items-center">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-5">
-                    <div class="card border-0 shadow-lg">
-                        <div class="card-body p-5">
-                            <div class="text-center mb-4">
-                                <i class="bi bi-heart-fill text-primary display-4"></i>
-                                <h2 class="mt-3">Welcome Back!</h2>
-                                <p class="text-muted">Sign in to your account or create a new one</p>
+    <!-- Main Authentication Container -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Tab Navigation -->
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">
+                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                </button>
+                <button class="tab-btn" data-tab="register">
+                    <i class="fas fa-user-plus me-2"></i>Register
+                </button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" class="form-container active">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label" for="loginEmail">
+                            <i class="fas fa-envelope me-2"></i>Email Address
+                        </label>
+                        <input type="email" class="form-control" id="loginEmail" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="loginPassword">
+                            <i class="fas fa-lock me-2"></i>Password
+                        </label>
+                        <input type="password" class="form-control" id="loginPassword" required>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">
+                                Remember me
+                            </label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary-custom">
+                        <i class="fas fa-sign-in-alt me-2"></i>Login to Your Account
+                    </button>
+                </form>
+            </div>
+
+            <!-- Registration Form -->
+            <div id="register-form" class="form-container">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label class="form-label" for="fullName">
+                            <i class="fas fa-user me-2"></i>Full Name
+                        </label>
+                        <input type="text" class="form-control" id="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="registerEmail">
+                            <i class="fas fa-envelope me-2"></i>Email Address
+                        </label>
+                        <input type="email" class="form-control" id="registerEmail" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="registerPassword">
+                            <i class="fas fa-lock me-2"></i>Password
+                        </label>
+                        <input type="password" class="form-control" id="registerPassword" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="confirmPassword">
+                            <i class="fas fa-lock me-2"></i>Confirm Password
+                        </label>
+                        <input type="password" class="form-control" id="confirmPassword" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-heart me-2"></i>I'm a proud owner of:
+                        </label>
+                        <div class="pet-selection">
+                            <div class="pet-option" data-pet="dog">
+                                <i class="fas fa-dog"></i>
+                                <div>Dog</div>
                             </div>
-
-                            <!-- Login/Register Tabs -->
-                            <ul class="nav nav-pills nav-justified mb-4" id="auth-tabs" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="login-tab" data-bs-toggle="pill" data-bs-target="#login" type="button" role="tab">
-                                        <i class="bi bi-box-arrow-in-right me-2"></i>Login
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="register-tab" data-bs-toggle="pill" data-bs-target="#register" type="button" role="tab">
-                                        <i class="bi bi-person-plus me-2"></i>Register
-                                    </button>
-                                </li>
-                            </ul>
-
-                            <div class="tab-content" id="auth-content">
-                                <!-- Login Form -->
-                                <div class="tab-pane fade show active" id="login" role="tabpanel">
-                                    <form id="login-form">
-                                        <div class="mb-3">
-                                            <label for="loginEmail" class="form-label">Email Address</label>
-                                            <input type="email" class="form-control form-control-lg" id="loginEmail" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="loginPassword" class="form-label">Password</label>
-                                            <input type="password" class="form-control form-control-lg" id="loginPassword" required>
-                                        </div>
-                                        <div class="mb-3 form-check">
-                                            <input type="checkbox" class="form-check-input" id="rememberMe">
-                                            <label class="form-check-label" for="rememberMe">
-                                                Remember me
-                                            </label>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
-                                            <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
-                                        </button>
-                                        <div class="text-center">
-                                            <a href="#" class="text-decoration-none">Forgot your password?</a>
-                                        </div>
-                                    </form>
-                                </div>
-
-                                <!-- Register Form -->
-                                <div class="tab-pane fade" id="register" role="tabpanel">
-                                    <form id="register-form">
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <label for="firstName" class="form-label">First Name</label>
-                                                <input type="text" class="form-control" id="firstName" required>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="lastName" class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" id="lastName" required>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="registerEmail" class="form-label">Email Address</label>
-                                            <input type="email" class="form-control" id="registerEmail" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="registerPassword" class="form-label">Password</label>
-                                            <input type="password" class="form-control" id="registerPassword" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                            <input type="password" class="form-control" id="confirmPassword" required>
-                                        </div>
-                                        <div class="mb-3 form-check">
-                                            <input type="checkbox" class="form-check-input" id="agreeTerms" required>
-                                            <label class="form-check-label" for="agreeTerms">
-                                                I agree to the <a href="#" class="text-decoration-none">Terms & Conditions</a>
-                                            </label>
-                                        </div>
-                                        <button type="submit" class="btn btn-warning btn-lg w-100">
-                                            <i class="bi bi-person-plus me-2"></i>Create Account
-                                        </button>
-                                    </form>
-                                </div>
+                            <div class="pet-option" data-pet="cat">
+                                <i class="fas fa-cat"></i>
+                                <div>Cat</div>
                             </div>
-
-                            <!-- Social Login -->
-                            <div class="text-center mt-4">
-                                <p class="text-muted mb-3">Or continue with</p>
-                                <div class="d-grid gap-2">
-                                    <button class="btn btn-outline-danger">
-                                        <i class="bi bi-google me-2"></i>Continue with Google
-                                    </button>
-                                    <button class="btn btn-outline-primary">
-                                        <i class="bi bi-facebook me-2"></i>Continue with Facebook
-                                    </button>
-                                </div>
+                            <div class="pet-option" data-pet="both">
+                                <i class="fas fa-paw"></i>
+                                <div>Both</div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    <button type="submit" class="btn btn-primary-custom">
+                        <i class="fas fa-user-plus me-2"></i>Create My Account
+                    </button>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <h5 class="mb-3">
-                        <i class="bi bi-heart-fill me-2"></i>Bowlfull Buddies
-                    </h5>
-                    <p class="text-muted">Your trusted partner in pet care. We provide premium quality products to keep your furry friends happy and healthy.</p>
-                </div>
-                <div class="col-lg-2">
-                    <h6 class="mb-3">Quick Links</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-muted">Home</a></li>
-                        <li><a href="products.html" class="text-muted">Products</a></li>
-                        <li><a href="about.html" class="text-muted">About Us</a></li>
-                        <li><a href="contact.html" class="text-muted">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2">
-                    <h6 class="mb-3">Categories</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="products.html?category=dogs" class="text-muted">Dog Products</a></li>
-                        <li><a href="products.html?category=cats" class="text-muted">Cat Products</a></li>
-                        <li><a href="products.html?category=food" class="text-muted">Pet Food</a></li>
-                        <li><a href="products.html?category=toys" class="text-muted">Toys</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4">
-                    <h6 class="mb-3">Contact Info</h6>
-                    <ul class="list-unstyled text-muted">
-                        <li><i class="bi bi-geo-alt me-2"></i>123 Pet Street, Animal City, AC 12345</li>
-                        <li><i class="bi bi-phone me-2"></i>(555) 123-PETS</li>
-                        <li><i class="bi bi-envelope me-2"></i>hello@bowlfullbuddies.com</li>
-                    </ul>
-                </div>
-            </div>
-            <hr class="my-4">
-            <div class="text-center text-muted">
-                <p>&copy; 2024 Bowlfull Buddies. All rights reserved.</p>
-            </div>
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#"><i class="fas fa-home me-1"></i>Home</a>
+            <a href="#"><i class="fas fa-envelope me-1"></i>Contact</a>
+            <a href="#"><i class="fas fa-shield-alt me-1"></i>Privacy Policy</a>
+            <a href="#"><i class="fas fa-file-alt me-1"></i>Terms of Service</a>
         </div>
     </footer>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Tab switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const formContainers = document.querySelectorAll('.form-container');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and forms
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    formContainers.forEach(form => form.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding form
+                    this.classList.add('active');
+                    document.getElementById(targetTab + '-form').classList.add('active');
+                });
+            });
+
+            // Pet selection functionality
+            const petOptions = document.querySelectorAll('.pet-option');
+            petOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    petOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+
+            // Form submission handlers
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const submitBtn = this.querySelector('button[type="submit"]');
+                
+                // Add loading state
+                submitBtn.classList.add('btn-loading');
+                
+                // Simulate API call
+                setTimeout(() => {
+                    submitBtn.classList.remove('btn-loading');
+                    alert('Login successful! Welcome to Bowlfull Buddies! 🐾');
+                }, 2000);
+            });
+
+            document.getElementById('registerForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const password = document.getElementById('registerPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const submitBtn = this.querySelector('button[type="submit"]');
+                
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+                
+                // Add loading state
+                submitBtn.classList.add('btn-loading');
+                
+                // Simulate API call
+                setTimeout(() => {
+                    submitBtn.classList.remove('btn-loading');
+                    alert('Registration successful! Welcome to the Bowlfull Buddies family! 🎉');
+                }, 2000);
+            });
+
+            // Forgot password handler
+            document.querySelector('.forgot-password').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Password reset link has been sent to your email! 📧');
+            });
+
+            // Input focus effects
+            const inputs = document.querySelectorAll('.form-control');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Add floating animation to buttons on hover
+            const buttons = document.querySelectorAll('.btn-primary-custom');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.animation = 'float 2s ease-in-out infinite';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.animation = 'none';
+                });
+            });
+
+            // Add some interactive feedback
+            document.querySelectorAll('.form-control').forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.value.length > 0) {
+                        this.style.borderColor = 'var(--accent-blue)';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

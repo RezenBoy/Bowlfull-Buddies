@@ -4,307 +4,984 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Bowlfull Buddies</title>
-    
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        :root {
+            --bg-color: #f9f6d2;
+            --accent-blue: #c1edff;
+            --highlight-pink: #ffc5e7;
+            --text-dark: #2c3e50;
+            --text-muted: #6c757d;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--bg-color) 0%, #f0ed9a 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background elements */
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.08;
+            animation: float 8s ease-in-out infinite;
+            color: var(--highlight-pink);
+        }
+
+        .floating-element:nth-child(1) { top: 15%; left: 5%; animation-delay: 0s; font-size: 3rem; }
+        .floating-element:nth-child(2) { top: 25%; right: 10%; animation-delay: 3s; font-size: 2.5rem; }
+        .floating-element:nth-child(3) { bottom: 30%; left: 15%; animation-delay: 6s; font-size: 2rem; }
+        .floating-element:nth-child(4) { bottom: 15%; right: 20%; animation-delay: 2s; font-size: 2.8rem; }
+        .floating-element:nth-child(5) { top: 60%; left: 80%; animation-delay: 4s; font-size: 2.2rem; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-25px) rotate(3deg); }
+            66% { transform: translateY(-15px) rotate(-2deg); }
+        }
+
+        /* Page header */
+        .page-header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main content */
+        .contact-section {
+            padding: 3rem 0;
+        }
+
+        .contact-form-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .contact-info-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        .card-hover:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--highlight-pink));
+            border-radius: 2px;
+        }
+
+        /* Form styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .form-control {
+            border: 2px solid var(--accent-blue);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-control:focus {
+            border-color: var(--highlight-pink);
+            box-shadow: 0 0 0 0.2rem rgba(255, 197, 231, 0.25);
+            background: white;
+            transform: scale(1.02);
+        }
+
+        .form-control:hover {
+            border-color: var(--highlight-pink);
+        }
+
+        .form-control.is-invalid {
+            border-color: #dc3545;
+        }
+
+        .invalid-feedback {
+            display: block;
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Submit button */
+        .btn-submit {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, #a8e6ff 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, var(--highlight-pink) 0%, #ffb3e1 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 197, 231, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* Contact info items */
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: var(--accent-blue);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-info-item:hover {
+            background: var(--highlight-pink);
+            transform: translateX(10px);
+        }
+
+        .contact-info-item i {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-right: 1rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .contact-info-text h5 {
+            margin: 0;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .contact-info-text p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Map container */
+        .map-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 12px;
+        }
+
+        
+        /* Loading state */
+        .btn-loading {
+            position: relative;
+            color: transparent !important;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Success/Error messages */
+        .alert-custom {
+            border-radius: 12px;
+            border: none;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .alert-success-custom {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+        }
+
+        .alert-error-custom {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+
+            .contact-form-card,
+            .contact-info-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .contact-info-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-info-item i {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 2rem 0 1rem;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .contact-form-card,
+            .contact-info-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Scroll reveal animation */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
+    <!-- Animated background -->
+    <div class="bg-decoration">
+        <div class="floating-element"><i class="fas fa-paw"></i></div>
+        <div class="floating-element"><i class="fas fa-heart"></i></div>
+        <div class="floating-element"><i class="fas fa-bone"></i></div>
+        <div class="floating-element"><i class="fas fa-dog"></i></div>
+        <div class="floating-element"><i class="fas fa-cat"></i></div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-primary" href="index.html">
-                <i class="bi bi-heart-fill me-2"></i>Bowlfull Buddies
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand bounce-hover" href="#">
+        <i class="fas fa-paw"></i> Bowlfull Buddies
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              Shop
             </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="products.html">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="contact.html">Contact</a>
-                    </li>
-                </ul>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#dogs"><i class="fas fa-dog"></i> Dogs</a></li>
+              <li><a class="dropdown-item" href="#cats"><i class="fas fa-cat"></i> Cats</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
 
-                <form class="d-flex me-2">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">Search</button>
-                </form>
-                
-                <div class="d-flex align-items-center">
-                    <a href="login.html" class="btn btn-outline-primary me-2">
-                        <i class="bi bi-person"></i> Login
-                    </a>
-                    <a href="cart.html" class="btn btn-primary position-relative">
-                        <i class="bi bi-bag"></i> Cart
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">
-                            0
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+        <button class="btn btn-login bounce-hover">
+          <a href="login.html">
+            <i class="fas fa-user"></i> Login / Register
 
+          </a>
+        </button>
+      </div>
+    </div>
+  </nav>
+<br>
+<br>
     <!-- Page Header -->
-    <section class="py-5 bg-light">
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">Get in Touch with Bowlfull Buddies</h1>
+            <p class="page-subtitle">
+                We'd love to hear from you! Whether you have questions about our products, 
+                need help with your order, or just want to share your pet's story, we're here to help.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="contact-section">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <h1 class="display-5 fw-bold text-center mb-4 fade-in">Contact Us</h1>
-                    <p class="lead text-center text-muted">We'd love to hear from you! Get in touch with any questions or feedback.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-8">
-                    <!-- Contact Form -->
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-primary text-white">
-                            <h4 class="mb-0"><i class="bi bi-envelope me-2"></i>Send us a Message</h4>
-                        </div>
-                        <div class="card-body p-4">
-                            <form id="contact-form">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label for="contactFirstName" class="form-label">First Name *</label>
-                                        <input type="text" class="form-control" id="contactFirstName" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="contactLastName" class="form-label">Last Name *</label>
-                                        <input type="text" class="form-control" id="contactLastName" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="contactEmail" class="form-label">Email Address *</label>
-                                        <input type="email" class="form-control" id="contactEmail" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="contactPhone" class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-control" id="contactPhone">
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="contactSubject" class="form-label">Subject *</label>
-                                        <select class="form-select" id="contactSubject" required>
-                                            <option value="">Choose a subject...</option>
-                                            <option value="general">General Inquiry</option>
-                                            <option value="order">Order Support</option>
-                                            <option value="product">Product Question</option>
-                                            <option value="return">Returns & Exchanges</option>
-                                            <option value="feedback">Feedback</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="contactMessage" class="form-label">Message *</label>
-                                        <textarea class="form-control" id="contactMessage" rows="5" placeholder="Tell us how we can help you..." required></textarea>
+                <!-- Contact Form -->
+                <div class="col-lg-8 mb-4">
+                    <div class="contact-form-card card-hover">
+                        <h2 class="section-title">
+                            <i class="fas fa-paper-plane me-2" style="color: var(--highlight-pink);"></i>
+                            Send Us a Message
+                        </h2>
+                        
+                        <div id="alertContainer"></div>
+                        
+                        <form id="contactForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="name">
+                                            <i class="fas fa-user me-2"></i>Full Name
+                                        </label>
+                                        <input type="text" class="form-control" id="name" required>
+                                        <div class="invalid-feedback"></div>
                                     </div>
                                 </div>
-                                <div class="mt-4">
-                                    <button type="submit" class="btn btn-primary btn-lg">
-                                        <i class="bi bi-send me-2"></i>Send Message
-                                    </button>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="email">
+                                            <i class="fas fa-envelope me-2"></i>Email Address
+                                        </label>
+                                        <input type="email" class="form-control" id="email" required>
+                                        <div class="invalid-feedback"></div>
+                                    </div>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="subject">
+                                    <i class="fas fa-tag me-2"></i>Subject
+                                </label>
+                                <select class="form-control" id="subject" required>
+                                    <option value="">Choose a subject...</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="order">Order Support</option>
+                                    <option value="product">Product Question</option>
+                                    <option value="feedback">Feedback</option>
+                                    <option value="partnership">Partnership</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="message">
+                                    <i class="fas fa-comment me-2"></i>Message
+                                </label>
+                                <textarea class="form-control" id="message" rows="5" placeholder="Tell us how we can help you and your furry friend..." required></textarea>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-submit">
+                                <i class="fas fa-paper-plane me-2"></i>Send Message
+                            </button>
+                        </form>
                     </div>
                 </div>
 
+                <!-- Contact Information -->
                 <div class="col-lg-4">
-                    <!-- Contact Information -->
-                    <div class="card border-0 shadow-sm mb-4">
-                        <div class="card-header bg-warning text-dark">
-                            <h5 class="mb-0"><i class="bi bi-info-circle me-2"></i>Contact Information</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="contact-item mb-4">
-                                <div class="d-flex align-items-start">
-                                    <i class="bi bi-geo-alt-fill text-primary me-3 mt-1"></i>
-                                    <div>
-                                        <h6 class="fw-bold">Address</h6>
-                                        <p class="text-muted mb-0">123 Pet Street<br>Animal City, AC 12345<br>United States</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="contact-item mb-4">
-                                <div class="d-flex align-items-start">
-                                    <i class="bi bi-telephone-fill text-primary me-3 mt-1"></i>
-                                    <div>
-                                        <h6 class="fw-bold">Phone</h6>
-                                        <p class="text-muted mb-0">(555) 123-PETS<br>Mon-Fri: 9AM-6PM EST</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="contact-item mb-4">
-                                <div class="d-flex align-items-start">
-                                    <i class="bi bi-envelope-fill text-primary me-3 mt-1"></i>
-                                    <div>
-                                        <h6 class="fw-bold">Email</h6>
-                                        <p class="text-muted mb-0">hello@bowlfullbuddies.com<br>We respond within 24 hours</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="d-flex align-items-start">
-                                    <i class="bi bi-chat-dots-fill text-primary me-3 mt-1"></i>
-                                    <div>
-                                        <h6 class="fw-bold">Live Chat</h6>
-                                        <p class="text-muted mb-0">Available on our website<br>Mon-Fri: 9AM-6PM EST</p>
-                                    </div>
-                                </div>
+                    <div class="contact-info-card card-hover">
+                        <h2 class="section-title">
+                            <i class="fas fa-info-circle me-2" style="color: var(--accent-blue);"></i>
+                            Contact Information
+                        </h2>
+                        
+                        <div class="contact-info-item" onclick="copyToClipboard('support@bowlfullbuddies.com')">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contact-info-text">
+                                <h5>Email Us</h5>
+                                <p>support@bowlfullbuddies.com</p>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- FAQ -->
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-success text-white">
-                            <h5 class="mb-0"><i class="bi bi-question-circle me-2"></i>Quick Help</h5>
+                        
+                        <div class="contact-info-item" onclick="copyToClipboard('+1 (555) 123-PETS')">
+                            <i class="fas fa-phone"></i>
+                            <div class="contact-info-text">
+                                <h5>Call Us</h5>
+                                <p>+1 (555) 123-PETS</p>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <div class="accordion" id="faqAccordion">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                            How long does shipping take?
-                                        </button>
-                                    </h2>
-                                    <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            Standard shipping takes 3-5 business days. Express shipping is available for 1-2 day delivery.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                            What's your return policy?
-                                        </button>
-                                    </h2>
-                                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            We offer 30-day returns on all unused items in original packaging. Pet food returns are subject to special conditions.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                            Do you offer bulk discounts?
-                                        </button>
-                                    </h2>
-                                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            Yes! Contact us for special pricing on bulk orders or if you're a rescue organization or shelter.
-                                        </div>
-                                    </div>
-                                </div>
+                        
+                        <div class="contact-info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="contact-info-text">
+                                <h5>Visit Us</h5>
+                                <p>123 Pet Paradise Lane<br>
+                                   Furry Friends City, PF 12345</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <i class="fas fa-clock"></i>
+                            <div class="contact-info-text">
+                                <h5>Business Hours</h5>
+                                <p>Mon - Fri: 9AM - 6PM<br>
+                                   Sat - Sun: 10AM - 4PM</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Map Section -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="display-6 fw-bold mb-4 fade-in">Visit Our Store</h2>
-                <p class="lead text-muted">Come see us in person! We'd love to meet you and your pets.</p>
-            </div>
-            
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-0">
-                            <!-- Placeholder for map - in a real implementation, you'd use Google Maps or similar -->
-                            <div class="bg-secondary d-flex align-items-center justify-content-center text-white" style="height: 400px;">
-                                <div class="text-center">
-                                    <i class="bi bi-geo-alt-fill display-1 mb-3"></i>
-                                    <h4>Interactive Map</h4>
-                                    <p>123 Pet Street, Animal City, AC 12345</p>
-                                    <a href="#" class="btn btn-light">Get Directions</a>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Map Section -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="map-container card-hover">
+                        <h2 class="section-title">
+                            <i class="fas fa-map me-2" style="color: var(--highlight-pink);"></i>
+                            Find Us Here
+                        </h2>
+                        <iframe 
+                            class="map-frame"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1841287844597!2d-73.98784!3d40.748817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1635180741405!5m2!1sen!2sus"
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <h5 class="mb-3">
-                        <i class="bi bi-heart-fill me-2"></i>Bowlfull Buddies
-                    </h5>
-                    <p class="text-muted">Your trusted partner in pet care. We provide premium quality products to keep your furry friends happy and healthy.</p>
-                    <div class="social-links">
-                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <h6 class="mb-3">Quick Links</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-muted">Home</a></li>
-                        <li><a href="products.html" class="text-muted">Products</a></li>
-                        <li><a href="about.html" class="text-muted">About Us</a></li>
-                        <li><a href="contact.html" class="text-muted">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2">
-                    <h6 class="mb-3">Categories</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="products.html?category=dogs" class="text-muted">Dog Products</a></li>
-                        <li><a href="products.html?category=cats" class="text-muted">Cat Products</a></li>
-                        <li><a href="products.html?category=food" class="text-muted">Pet Food</a></li>
-                        <li><a href="products.html?category=toys" class="text-muted">Toys</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4">
-                    <h6 class="mb-3">Contact Info</h6>
-                    <ul class="list-unstyled text-muted">
-                        <li><i class="bi bi-geo-alt me-2"></i>123 Pet Street, Animal City, AC 12345</li>
-                        <li><i class="bi bi-phone me-2"></i>(555) 123-PETS</li>
-                        <li><i class="bi bi-envelope me-2"></i>hello@bowlfullbuddies.com</li>
-                    </ul>
-                </div>
-            </div>
-            <hr class="my-4">
-            <div class="text-center text-muted">
-                <p>&copy; 2024 Bowlfull Buddies. All rights reserved.</p>
-            </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 mb-4">
+          <h6><i class="fas fa-paw"></i> Bowlfull Buddies</h6>
+          <p>Your one-stop shop for everything your pets need to live their best lives.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
         </div>
-    </footer>
+        <div class="col-md-3 mb-4">
+          <h6>About</h6>
+          <ul class="list-unstyled">
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h6>Customer Service</h6>
+          <ul class="list-unstyled">
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Size Guide</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h6>Quick Links</h6>
+          <ul class="list-unstyled">
+            <li><a href="#">Dog Products</a></li>
+            <li><a href="#">Cat Products</a></li>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Sale Items</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-6">
+          <p>&copy; 2025 Bowlfull Buddies. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a href="#" class="me-3">Privacy Policy</a>
+          <a href="#" class="me-3">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const alertContainer = document.getElementById('alertContainer');
+
+            // Form validation and submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validateForm()) {
+                    submitForm();
+                }
+            });
+
+            // Real-time validation
+            const inputs = form.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('is-invalid')) {
+                        validateField(this);
+                    }
+                });
+            });
+
+            function validateField(field) {
+                const value = field.value.trim();
+                let isValid = true;
+                let errorMessage = '';
+
+                // Clear previous validation
+                field.classList.remove('is-invalid');
+                const feedback = field.nextElementSibling;
+
+                switch (field.id) {
+                    case 'name':
+                        if (value.length < 2) {
+                            isValid = false;
+                            errorMessage = 'Please enter your full name (at least 2 characters)';
+                        }
+                        break;
+                    
+                    case 'email':
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(value)) {
+                            isValid = false;
+                            errorMessage = 'Please enter a valid email address';
+                        }
+                        break;
+                    
+                    case 'subject':
+                        if (value === '') {
+                            isValid = false;
+                            errorMessage = 'Please select a subject';
+                        }
+                        break;
+                    
+                    case 'message':
+                        if (value.length < 10) {
+                            isValid = false;
+                            errorMessage = 'Please enter a message (at least 10 characters)';
+                        }
+                        break;
+                }
+
+                if (!isValid) {
+                    field.classList.add('is-invalid');
+                    if (feedback && feedback.classList.contains('invalid-feedback')) {
+                        feedback.textContent = errorMessage;
+                    }
+                } else {
+                    field.classList.remove('is-invalid');
+                    if (feedback && feedback.classList.contains('invalid-feedback')) {
+                        feedback.textContent = '';
+                    }
+                }
+
+                return isValid;
+            }
+
+            function validateForm() {
+                let isFormValid = true;
+                
+                inputs.forEach(input => {
+                    if (!validateField(input)) {
+                        isFormValid = false;
+                    }
+                });
+
+                return isFormValid;
+            }
+
+            function submitForm() {
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                // Show loading state
+                submitBtn.classList.add('btn-loading');
+                submitBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // Reset button
+                    submitBtn.classList.remove('btn-loading');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                    
+                    // Show success message
+                    showAlert('success', 'Thank you for your message! We\'ll get back to you within 24 hours. 🐾');
+                    
+                    // Reset form
+                    form.reset();
+                    
+                    // Remove any validation classes
+                    inputs.forEach(input => {
+                        input.classList.remove('is-invalid');
+                        const feedback = input.nextElementSibling;
+                        if (feedback && feedback.classList.contains('invalid-feedback')) {
+                            feedback.textContent = '';
+                        }
+                    });
+                    
+                }, 2000);
+            }
+
+            function showAlert(type, message) {
+                const alertClass = type === 'success' ? 'alert-success-custom' : 'alert-error-custom';
+                const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
+                
+                const alertHtml = `
+                    <div class="alert alert-custom ${alertClass} alert-dismissible fade show" role="alert">
+                        <i class="${icon} me-2"></i>
+                        ${message}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `;
+                
+                alertContainer.innerHTML = alertHtml;
+                
+                // Auto-hide after 5 seconds
+                setTimeout(() => {
+                    const alert = alertContainer.querySelector('.alert');
+                    if (alert) {
+                        alert.classList.remove('show');
+                        setTimeout(() => {
+                            alertContainer.innerHTML = '';
+                        }, 150);
+                    }
+                }, 5000);
+            }
+
+            // Copy to clipboard functionality
+            window.copyToClipboard = function(text) {
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        showAlert('success', `Copied "${text}" to clipboard! 📋`);
+                    });
+                } else {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        showAlert('success', `Copied "${text}" to clipboard! 📋`);
+                    } catch (err) {
+                        showAlert('error', 'Failed to copy to clipboard');
+                    }
+                    document.body.removeChild(textArea);
+                }
+            };
+
+            // Scroll reveal animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for scroll animation
+            const scrollElements = document.querySelectorAll('.card-hover, .contact-info-item');
+            scrollElements.forEach(el => {
+                el.classList.add('scroll-reveal');
+                observer.observe(el);
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 100) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                }
+            });
+
+            // Enhanced form interactions
+            inputs.forEach(input => {
+                // Focus animations
+                input.addEventListener('focus', function() {
+                    this.style.transform = 'scale(1.02)';
+                    this.parentElement.style.position = 'relative';
+                    this.parentElement.style.zIndex = '10';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.style.transform = 'scale(1)';
+                    this.parentElement.style.zIndex = '1';
+                });
+
+                // Character count for textarea
+                if (input.tagName === 'TEXTAREA') {
+                    const charCount = document.createElement('small');
+                    charCount.className = 'text-muted float-end';
+                    charCount.style.marginTop = '0.25rem';
+                    input.parentElement.appendChild(charCount);
+                    
+                    input.addEventListener('input', function() {
+                        const length = this.value.length;
+                        charCount.textContent = `${length} characters`;
+                        
+                        if (length >= 10) {
+                            charCount.style.color = 'var(--accent-blue)';
+                        } else {
+                            charCount.style.color = 'var(--text-muted)';
+                        }
+                    });
+                }
+            });
+
+            // Contact info hover effects
+            const contactItems = document.querySelectorAll('.contact-info-item');
+            contactItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.animation = 'float 2s ease-in-out infinite';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.animation = 'none';
+                });
+            });
+
+            // Social icons hover effects
+            const socialIcons = document.querySelectorAll('.social-icon');
+            socialIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.animation = 'float 1.5s ease-in-out infinite';
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.animation = 'none';
+                });
+            });
+
+            // Add floating animation keyframes if not already present
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes float-hover {
+                    0%, 100% { transform: translateY(0px); }
+                    50% { transform: translateY(-10px); }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Add interactive feedback to form
+            form.addEventListener('input', function() {
+                const formData = new FormData(form);
+                let filledFields = 0;
+                let totalFields = 4;
+                
+                formData.forEach((value, key) => {
+                    if (value.trim() !== '') {
+                        filledFields++;
+                    }
+                });
+                
+                const progress = (filledFields / totalFields) * 100;
+                
+                // You could add a progress bar here if desired
+                if (progress === 100) {
+                    form.style.borderColor = 'var(--accent-blue)';
+                } else {
+                    form.style.borderColor = 'transparent';
+                }
+            });
+
+            // Add welcome message on page load
+            setTimeout(() => {
+                showAlert('success', 'Welcome to Bowlfull Buddies! We\'re excited to hear from you! 🎉');
+            }, 1500);
+
+            // Enhanced map interaction
+            const mapFrame = document.querySelector('.map-frame');
+            if (mapFrame) {
+                mapFrame.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                    this.style.transform = 'scale(1)';
+                });
+                
+                // Initial styles for animation
+                mapFrame.style.opacity = '0';
+                mapFrame.style.transform = 'scale(0.95)';
+                mapFrame.style.transition = 'all 0.5s ease';
+            }
+        });
+    </script>
 </body>
 </html>

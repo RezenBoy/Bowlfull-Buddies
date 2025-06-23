@@ -1,331 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bowlfull Buddies - Everything for Your Furry Friends</title>
-    
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bowlfull Buddies - Everything for Your Furry Friends</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
 
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand bounce-hover" href="#">
-                <i class="fas fa-paw"></i> Bowlfull Buddies
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand bounce-hover" href="#">
+        <i class="fas fa-paw"></i> Bowlfull Buddies
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              Shop
             </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            Shop
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#dogs"><i class="fas fa-dog"></i> Dogs</a></li>
-                            <li><a class="dropdown-item" href="#cats"><i class="fas fa-cat"></i> Cats</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                </ul>
-                
-                <button class="btn btn-login bounce-hover">
-                    <i class="fas fa-user"></i> Login / Register
-                </button>
-            </div>
-        </div>
-    </nav>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#dogs"><i class="fas fa-dog"></i> Dogs</a></li>
+              <li><a class="dropdown-item" href="#cats"><i class="fas fa-cat"></i> Cats</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 hero-content fade-in-up">
-                    <h1>Welcome to Bowlfull Buddies</h1>
-                    <p>Everything for your tail-wagging and purring buddies</p>
-                    <button class="btn btn-cta bounce-hover">
-                        <i class="fas fa-shopping-cart"></i> Shop Now
-                    </button>
-                </div>
-                <div class="col-lg-6 text-center">
-                    <div style="font-size: 15rem; opacity: 0.7;">🐕🐱</div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <button class="btn btn-login bounce-hover">
+          <a href="login.html">
+            <i class="fas fa-user"></i> Login / Register
 
-    <!-- Category Cards -->
-    <section class="section-padding">
-        <div class="container">
-            <h2 class="section-title">Shop by Pet</h2>
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="category-card fade-in-up">
-                        <div style="height: 250px; background: linear-gradient(45deg, #ffd89b, #19547b); display: flex; align-items: center; justify-content: center; font-size: 5rem;">
-                            🐕
-                        </div>
-                        <div class="card-body">
-                            <h5>Shop for Dogs</h5>
-                            <p>Toys, treats, accessories and more for your canine companion</p>
-                            <button class="btn btn-cta">
-                                <i class="fas fa-bone"></i> Shop Dogs
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="category-card fade-in-up">
-                        <div style="height: 250px; background: linear-gradient(45deg, #a8e6cf, #ff8a80); display: flex; align-items: center; justify-content: center; font-size: 5rem;">
-                            🐱
-                        </div>
-                        <div class="card-body">
-                            <h5>Shop for Cats</h5>
-                            <p>Everything your feline friend needs to stay happy and healthy</p>
-                            <button class="btn btn-cta">
-                                <i class="fas fa-fish"></i> Shop Cats
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+          </a>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Featured Products -->
-    <section class="section-padding" style="background-color: white;">
-        <div class="container">
-            <h2 class="section-title">Featured Products</h2>
-            <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="product-card fade-in-up">
-                        <div style="height: 200px; background: linear-gradient(45deg, #ffeaa7, #fab1a0); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
-                            🦴
-                        </div>
-                        <div class="card-body">
-                            <h6>Premium Dog Treats</h6>
-                            <div class="product-price">$24.99</div>
-                            <button class="btn btn-cart">
-                                <i class="fas fa-cart-plus"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="product-card fade-in-up">
-                        <div style="height: 200px; background: linear-gradient(45deg, #81ecec, #a29bfe); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
-                            🏀
-                        </div>
-                        <div class="card-body">
-                            <h6>Interactive Cat Toy</h6>
-                            <div class="product-price">$19.99</div>
-                            <button class="btn btn-cart">
-                                <i class="fas fa-cart-plus"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="product-card fade-in-up">
-                        <div style="height: 200px; background: linear-gradient(45deg, #fd79a8, #fdcb6e); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
-                            🥣
-                        </div>
-                        <div class="card-body">
-                            <h6>Stainless Steel Bowl</h6>
-                            <div class="product-price">$14.99</div>
-                            <button class="btn btn-cart">
-                                <i class="fas fa-cart-plus"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="product-card fade-in-up">
-                        <div style="height: 200px; background: linear-gradient(45deg, #55a3ff, #ff6b6b); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
-                            🎾
-                        </div>
-                        <div class="card-body">
-                            <h6>Tennis Ball Set</h6>
-                            <div class="product-price">$12.99</div>
-                            <button class="btn btn-cart">
-                                <i class="fas fa-cart-plus"></i> Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 hero-content fade-in-up">
+          <h1>Welcome to Bowlfull Buddies</h1>
+          <p>Everything for your tail-wagging and purring buddies</p>
+          <button class="btn btn-cta bounce-hover">
+            <i class="fas fa-shopping-cart"></i> Shop Now
+          </button>
         </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="section-padding">
-        <div class="container">
-            <h2 class="section-title">What Our Customers Say</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="testimonial-card fade-in-up">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"My dog Max absolutely loves the treats from Bowlfull Buddies! Fast shipping and great quality."</p>
-                        <div class="d-flex align-items-center">
-                            <div style="width: 50px; height: 50px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
-                                👤
-                            </div>
-                            <div>
-                                <strong>Sarah Johnson</strong><br>
-                                <small>Dog Parent</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="testimonial-card fade-in-up">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"Excellent customer service and my cats are obsessed with their new toys. Highly recommend!"</p>
-                        <div class="d-flex align-items-center">
-                            <div style="width: 50px; height: 50px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
-                                👤
-                            </div>
-                            <div>
-                                <strong>Mike Chen</strong><br>
-                                <small>Cat Parent</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="testimonial-card fade-in-up">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"Great selection and prices. My pets are always excited when packages arrive from here!"</p>
-                        <div class="d-flex align-items-center">
-                            <div style="width: 50px; height: 50px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
-                                👤
-                            </div>
-                            <div>
-                                <strong>Emily Davis</strong><br>
-                                <small>Multi-Pet Parent</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="col-lg-6 text-center">
+          <div style="font-size: 15rem; opacity: 0.7;">🐕🐱</div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Newsletter -->
-    <section class="section-padding">
-        <div class="container">
-            <div class="newsletter text-center">
-                <h3>Stay Updated with Pet Care Tips & Deals</h3>
-                <p>Subscribe to our newsletter for exclusive offers and pet care advice</p>
-                <div class="row justify-content-center">
-                    <div class="col-md-6">
-                        <div class="d-flex flex-column flex-md-row">
-                            <input type="email" class="form-control" placeholder="Enter your email address">
-                            <button class="btn btn-subscribe">
-                                <i class="fas fa-paper-plane"></i> Subscribe
-                            </button>
-                        </div>
-                    </div>
-                </div>
+  <!-- Category Cards -->
+  <section class="section-padding">
+    <div class="container">
+      <h2 class="section-title">Shop by Pet</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="category-card fade-in-up">
+            <div
+              style="height: 250px; background: linear-gradient(45deg, #ffd89b, #19547b); display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+              🐕
             </div>
+            <div class="card-body">
+              <h5>Shop for Dogs</h5>
+              <p>Toys, treats, accessories and more for your canine companion</p>
+              <button class="btn btn-cta">
+                <i class="fas fa-bone"></i> Shop Dogs
+              </button>
+            </div>
+          </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 mb-4">
-                    <h6><i class="fas fa-paw"></i> Bowlfull Buddies</h6>
-                    <p>Your one-stop shop for everything your pets need to live their best lives.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <h6>About</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Our Story</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Press</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <h6>Customer Service</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Shipping Info</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">Size Guide</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <h6>Quick Links</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Dog Products</a></li>
-                        <li><a href="#">Cat Products</a></li>
-                        <li><a href="#">New Arrivals</a></li>
-                        <li><a href="#">Sale Items</a></li>
-                    </ul>
-                </div>
+        <div class="col-md-6 mb-4">
+          <div class="category-card fade-in-up">
+            <div
+              style="height: 250px; background: linear-gradient(45deg, #a8e6cf, #ff8a80); display: flex; align-items: center; justify-content: center; font-size: 5rem;">
+              🐱
             </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>&copy; 2025 Bowlfull Buddies. All rights reserved.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <a href="#" class="me-3">Privacy Policy</a>
-                    <a href="#" class="me-3">Terms of Service</a>
-                    <a href="#">Cookie Policy</a>
-                </div>
+            <div class="card-body">
+              <h5>Shop for Cats</h5>
+              <p>Everything your feline friend needs to stay happy and healthy</p>
+              <button class="btn btn-cta">
+                <i class="fas fa-fish"></i> Shop Cats
+              </button>
             </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+  <!-- Featured Products -->
+  <section class="section-padding" style="background-color: white;">
+    <div class="container">
+      <h2 class="section-title">Featured Products</h2>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="product-card fade-in-up">
+            <div
+              style="height: 200px; background: linear-gradient(45deg, #ffeaa7, #fab1a0); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+              🦴
+            </div>
+            <div class="card-body">
+              <h6>Premium Dog Treats</h6>
+              <div class="product-price">$24.99</div>
+              <button class="btn btn-cart">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="product-card fade-in-up">
+            <div
+              style="height: 200px; background: linear-gradient(45deg, #81ecec, #a29bfe); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+              🏀
+            </div>
+            <div class="card-body">
+              <h6>Interactive Cat Toy</h6>
+              <div class="product-price">$19.99</div>
+              <button class="btn btn-cart">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="product-card fade-in-up">
+            <div
+              style="height: 200px; background: linear-gradient(45deg, #fd79a8, #fdcb6e); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+              🥣
+            </div>
+            <div class="card-body">
+              <h6>Stainless Steel Bowl</h6>
+              <div class="product-price">$14.99</div>
+              <button class="btn btn-cart">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="product-card fade-in-up">
+            <div
+              style="height: 200px; background: linear-gradient(45deg, #55a3ff, #ff6b6b); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+              🎾
+            </div>
+            <div class="card-body">
+              <h6>Tennis Ball Set</h6>
+              <div class="product-price">$12.99</div>
+              <button class="btn btn-cart">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section-padding">
+    <div class="container">
+      <h2 class="section-title">What Our Customers Say</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="testimonial-card fade-in-up">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"My dog Max absolutely loves the treats from Bowlfull Buddies! Fast shipping and great quality."</p>
+            <div class="d-flex align-items-center">
+              <div
+                style="width: 50px; height: 50px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                👤
+              </div>
+              <div>
+                <strong>Sarah Johnson</strong><br>
+                <small>Dog Parent</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card fade-in-up">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"Excellent customer service and my cats are obsessed with their new toys. Highly recommend!"</p>
+            <div class="d-flex align-items-center">
+              <div
+                style="width: 50px; height: 50px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                👤
+              </div>
+              <div>
+                <strong>Mike Chen</strong><br>
+                <small>Cat Parent</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card fade-in-up">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"Great selection and prices. My pets are always excited when packages arrive from here!"</p>
+            <div class="d-flex align-items-center">
+              <div
+                style="width: 50px; height: 50px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                👤
+              </div>
+              <div>
+                <strong>Emily Davis</strong><br>
+                <small>Multi-Pet Parent</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="newsletter text-center">
+        <h3>Stay Updated with Pet Care Tips & Deals</h3>
+        <p>Subscribe to our newsletter for exclusive offers and pet care advice</p>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="d-flex flex-column flex-md-row">
+              <input type="email" class="form-control" placeholder="Enter your email address">
+              <button class="btn btn-subscribe">
+                <i class="fas fa-paper-plane"></i> Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 mb-4">
+          <h6><i class="fas fa-paw"></i> Bowlfull Buddies</h6>
+          <p>Your one-stop shop for everything your pets need to live their best lives.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h6>About</h6>
+          <ul class="list-unstyled">
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h6>Customer Service</h6>
+          <ul class="list-unstyled">
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Size Guide</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 mb-4">
+          <h6>Quick Links</h6>
+          <ul class="list-unstyled">
+            <li><a href="#">Dog Products</a></li>
+            <li><a href="#">Cat Products</a></li>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Sale Items</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-6">
+          <p>&copy; 2025 Bowlfull Buddies. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a href="#" class="me-3">Privacy Policy</a>
+          <a href="#" class="me-3">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
 
 </body>
+
 </html>
