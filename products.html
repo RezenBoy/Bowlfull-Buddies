@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Bowls - Bowlfull Buddies</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-cream: #f9f6d2;
+            --accent-blue: #c1edff;
+            --highlight-pink: #ffc5e7;
+            --text-dark: #333;
+            --text-light: #666;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        /* Navigation */
+        .navbar-nav .nav-link:hover {
+            background: var(--accent-blue);
+            color: var(--text-dark) !important;
+        }
+
+        .navbar-nav .nav-link.active {
+            background: var(--highlight-pink);
+            color: var(--text-dark) !important;
+        }
+
+        .btn-login {
+            background-color: var(--accent-blue);
+            border: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background-color: var(--highlight-pink);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-login a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--highlight-pink) 100%);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="80">🥣</text></svg>') center / cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            position: relative;
+            z-index: 2;
+        }
+
+        .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .breadcrumb-item+.breadcrumb-item::before {
+            content: ">";
+            color: var(--text-light);
+        }
+
+        .breadcrumb-item a {
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .breadcrumb-item.active {
+            color: var(--text-light);
+        }
+
+        /* Main Layout */
+        .main-content {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        /* Left Sidebar Filter */
+        .filter-sidebar {
+            width: 300px;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            height: calc(100vh - 140px);
+            overflow-y: auto;
+            z-index: 10;
+        }
+
+        .filter-sidebar h4 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-section {
+            margin-bottom: 2rem;
+        }
+
+        .filter-section h6 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 0.5rem;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-option:hover {
+            background: var(--accent-blue);
+        }
+
+        .filter-option input[type="checkbox"] {
+            margin-right: 0.5rem;
+            transform: scale(1.2);
+        }
+
+        .filter-option label {
+            cursor: pointer;
+            margin: 0;
+            flex: 1;
+        }
+
+        .price-range {
+            margin-bottom: 1rem;
+        }
+
+        .price-input {
+            width: 100%;
+            border: 2px solid var(--accent-blue);
+            border-radius: 10px;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            background: white;
+        }
+
+        .price-input:focus {
+            outline: none;
+            border-color: var(--highlight-pink);
+        }
+
+        .filter-btn {
+            background: var(--highlight-pink);
+            border: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            width: 100%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-btn:hover {
+            background: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .clear-btn {
+            background: transparent;
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+            margin-top: 1rem;
+        }
+
+        .clear-btn:hover {
+            background: var(--text-light);
+            color: white;
+        }
+
+        /* Products Area */
+        .products-area {
+            flex: 1;
+            margin-left: 320px;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .products-count {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .sort-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sort-select {
+            border: 2px solid var(--accent-blue);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            background: white;
+            color: var(--text-dark);
+        }
+
+        .sort-select:focus {
+            outline: none;
+            border-color: var(--highlight-pink);
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .view-btn {
+            background: var(--bg-cream);
+            border: 2px solid var(--accent-blue);
+            color: var(--text-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn.active,
+        .view-btn:hover {
+            background: var(--accent-blue);
+        }
+
+        /* Product Cards */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--highlight-pink);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--highlight-pink);
+            color: var(--text-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 5;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: white;
+            border: none;
+            color: var(--text-light);
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .wishlist-btn:hover,
+        .wishlist-btn.active {
+            color: #ff6b6b;
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+
+        .product-material {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-rating {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rating-text {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .current-price {
+            background: var(--accent-blue);
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 1.1rem;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .discount {
+            background: #ff6b6b;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-cart {
+            background: var(--highlight-pink);
+            border: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .btn-cart:hover {
+            background: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-quick-view {
+            background: var(--bg-cream);
+            border: 2px solid var(--accent-blue);
+            color: var(--text-dark);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-quick-view:hover {
+            background: var(--accent-blue);
+            transform: scale(1.1);
+        }
+
+        /* Pagination */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .page-btn {
+            background: white;
+            border: 2px solid var(--accent-blue);
+            color: var(--text-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+            background: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .filter-sidebar {
+                width: 250px;
+            }
+
+            .products-area {
+                margin-left: 270px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .filter-sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                margin-bottom: 2rem;
+            }
+
+            .products-area {
+                margin-left: 0;
+            }
+
+            .main-content {
+                flex-direction: column;
+            }
+
+            .products-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-paw"></i> Bowlfull Buddies
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
+                            Shop
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="product_view.html"><i class="fas fa-dog"></i> Dogs</a>
+                            </li>
+                            <li><a class="dropdown-item" href="product_view.html"><i class="fas fa-cat"></i> Cats</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+
+                <button class="btn btn-login">
+                    <a href="login.html">
+                        <i class="fas fa-user"></i> Login / Register
+                    </a>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="product_view.html">Shop</a></li>
+                    <li class="breadcrumb-item active">Dog Bowls</li>
+                </ol>
+            </nav>
+            <h1 class="fade-in-up">Dog Bowls</h1>
+            <p class="fade-in-up">Premium feeding solutions for your furry friends</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Left Sidebar Filter -->
+            <div class="filter-sidebar">
+                <h4><i class="fas fa-filter"></i> Filters</h4>
+
+                <!-- Material Filter -->
+                <div class="filter-section">
+                    <h6>Material</h6>
+                    <div class="filter-option">
+                        <input type="checkbox" id="stainless" value="stainless">
+                        <label for="stainless">Stainless Steel</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="ceramic" value="ceramic">
+                        <label for="ceramic">Ceramic</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="plastic" value="plastic">
+                        <label for="plastic">Plastic</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="silicone" value="silicone">
+                        <label for="silicone">Silicone</label>
+                    </div>
+                </div>
+
+                <!-- Size Filter -->
+                <div class="filter-section">
+                    <h6>Size</h6>
+                    <div class="filter-option">
+                        <input type="checkbox" id="small" value="small">
+                        <label for="small">Small (Up to 15lbs)</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="medium" value="medium">
+                        <label for="medium">Medium (15-50lbs)</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="large" value="large">
+                        <label for="large">Large (50-90lbs)</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="xl" value="xl">
+                        <label for="xl">Extra Large (90lbs+)</label>
+                    </div>
+                </div>
+
+                <!-- Features Filter -->
+                <div class="filter-section">
+                    <h6>Features</h6>
+                    <div class="filter-option">
+                        <input type="checkbox" id="nonslip" value="nonslip">
+                        <label for="nonslip">Non-Slip Base</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="elevated" value="elevated">
+                        <label for="elevated">Elevated Design</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="slow-feed" value="slow-feed">
+                        <label for="slow-feed">Slow Feeding</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="dishwasher" value="dishwasher">
+                        <label for="dishwasher">Dishwasher Safe</label>
+                    </div>
+                </div>
+
+                <!-- Price Range -->
+                <div class="filter-section">
+                    <h6>Price Range</h6>
+                    <div class="price-range">
+                        <input type="number" class="price-input" placeholder="Min Price" id="minPrice">
+                        <input type="number" class="price-input" placeholder="Max Price" id="maxPrice">
+                    </div>
+                </div>
+
+                <!-- Brand Filter -->
+                <div class="filter-section">
+                    <h6>Brand</h6>
+                    <div class="filter-option">
+                        <input type="checkbox" id="pawsome" value="pawsome">
+                        <label for="pawsome">Pawsome</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="furbaby" value="furbaby">
+                        <label for="furbaby">FurBaby</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="premium-pet" value="premium-pet">
+                        <label for="premium-pet">Premium Pet</label>
+                    </div>
+                </div>
+
+                <!-- Filter Actions -->
+                <button class="filter-btn" onclick="applyFilters()">
+                    <i class="fas fa-search"></i> Apply Filters
+                </button>
+                <button class="filter-btn clear-btn" onclick="clearFilters()">
+                    <i class="fas fa-times"></i> Clear All
+                </button>
+            </div>
+
+            <!-- Products Area -->
+            <div class="products-area">
+                <!-- Products Header -->
+                <div class="products-header">
+                    <div class="products-info">
+                        <h5>Dog Bowls</h5>
+                        <p class="products-count">Showing <span id="showing-count">12</span> of <span
+                                id="total-count">24</span> products</p>
+                    </div>
+                    <div class="sort-section">
+                        <label>Sort by:</label>
+                        <select class="sort-select" onchange="sortProducts(this.value)">
+                            <option value="popularity">Popularity</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Customer Rating</option>
+                            <option value="newest">Newest First</option>
+                        </select>
+                        <div class="view-toggle">
+                            <button class="view-btn active" onclick="setGridView()">
+                                <i class="fas fa-th"></i>
+                            </button>
+                            <button class="view-btn" onclick="setListView()">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be loaded here -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-container">
+                    <div class="pagination" id="pagination">
+                        <!-- Pagination will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const productsPerPage = 6;
+        let currentPage = 1;
+        let filteredProducts = [...dogBowls];
+
+        // Initial render
+        document.addEventListener("DOMContentLoaded", () => {
+            renderProducts();
+            renderPagination();
+        });
+
+        function renderProducts() {
+            const start = (currentPage - 1) * productsPerPage;
+            const end = start + productsPerPage;
+            const displayProducts = filteredProducts.slice(start, end);
+
+            const container = document.getElementById("products-grid");
+            container.innerHTML = "";
+
+            displayProducts.forEach(product => {
+                container.innerHTML += `
+                <div class="product-card fade-in-up" style="background: ${product.gradient}">
+                    <div class="product-image">
+                        ${product.emoji}
+                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ""}
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">${product.name}</div>
+                        <div class="product-material">${capitalize(product.material)} • ${capitalize(product.size)}</div>
+                        <div class="product-rating">
+                            ${'★'.repeat(product.rating)}${'☆'.repeat(5 - product.rating)}
+                            <span class="rating-text">(${product.reviews} reviews)</span>
+                        </div>
+                        <div class="product-price">
+                            <div class="current-price">₹${product.price.toFixed(2)}</div>
+                            ${product.originalPrice ? `<div class="original-price">₹${product.originalPrice}</div>` : ""}
+                            ${product.discount ? `<div class="discount">${product.discount}</div>` : ""}
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-cart"><i class="fas fa-cart-plus"></i> Add</button>
+                            <button class="btn-quick-view"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            });
+
+            // Update counts
+            document.getElementById("showing-count").textContent = displayProducts.length;
+            document.getElementById("total-count").textContent = filteredProducts.length;
+        }
+
+        function renderPagination() {
+            const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
+            const paginationContainer = document.getElementById("pagination");
+            paginationContainer.innerHTML = "";
+
+            for (let i = 1; i <= pageCount; i++) {
+                const btn = document.createElement("button");
+                btn.className = "page-btn" + (i === currentPage ? " active" : "");
+                btn.textContent = i;
+                btn.onclick = () => {
+                    currentPage = i;
+                    renderProducts();
+                    renderPagination();
+                };
+                paginationContainer.appendChild(btn);
+            }
+        }
+
+        function applyFilters() {
+            const materialFilters = getCheckedValues(["stainless", "ceramic", "plastic", "silicone"]);
+            const sizeFilters = getCheckedValues(["small", "medium", "large", "xl"]);
+            const featureFilters = getCheckedValues(["nonslip", "elevated", "slow-feed", "dishwasher"]);
+            const brandFilters = getCheckedValues(["pawsome", "furbaby", "premium-pet"]);
+
+            const minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
+            const maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
+
+            filteredProducts = dogBowls.filter(product => {
+                return (
+                    (materialFilters.length === 0 || materialFilters.includes(product.material)) &&
+                    (sizeFilters.length === 0 || sizeFilters.includes(product.size)) &&
+                    (featureFilters.length === 0 || featureFilters.every(f => product.features.includes(f))) &&
+                    (brandFilters.length === 0 || brandFilters.includes(product.brand)) &&
+                    (product.price >= minPrice && product.price <= maxPrice)
+                );
+            });
+
+            currentPage = 1;
+            renderProducts();
+            renderPagination();
+        }
+
+        function clearFilters() {
+            document.querySelectorAll('.filter-sidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
+            document.getElementById("minPrice").value = "";
+            document.getElementById("maxPrice").value = "";
+            filteredProducts = [...dogBowls];   
+            currentPage = 1;
+            renderProducts();
+            renderPagination();
+        }
+
+        function getCheckedValues(ids) {
+            return ids.filter(id => document.getElementById(id).checked);
+        }
+
+        function sortProducts(type) {
+            switch (type) {
+                case "price-low":
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case "price-high":
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case "rating":
+                    filteredProducts.sort((a, b) => b.rating - a.rating);
+                    break;
+                case "newest":
+                    filteredProducts.reverse(); // Assuming last is newest
+                    break;
+                case "popularity":
+                default:
+                    filteredProducts.sort((a, b) => b.reviews - a.reviews);
+                    break;
+            }
+            currentPage = 1;
+            renderProducts();
+        }
+
+        function capitalize(word) {
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        }
+
+        function setGridView() {
+            document.getElementById("products-grid").classList.remove("list-view");
+            document.querySelectorAll(".view-btn").forEach(btn => btn.classList.remove("active"));
+            event.currentTarget.classList.add("active");
+        }
+
+        function setListView() {
+            document.getElementById("products-grid").classList.add("list-view");
+            document.querySelectorAll(".view-btn").forEach(btn => btn.classList.remove("active"));
+            event.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+
+</html>
