@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dog Bowls - Bowlfull Buddies</title>
+    <title>Shop Products - Bowlfull Buddies</title>
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -35,10 +35,75 @@
             background-color: var(--bg-cream);
             color: var(--text-dark);
             line-height: 1.6;
-            padding-top: 80px;
+        }
+
+        /* Custom Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .bounce-hover:hover {
+            animation: bounce 0.6s;
         }
 
         /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark) !important;
+        }
+
+        .navbar-brand i {
+            margin: 0 0.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            padding: 0.5rem 1rem !important;
+        }
+
         .navbar-nav .nav-link:hover {
             background: var(--accent-blue);
             color: var(--text-dark) !important;
@@ -73,7 +138,7 @@
         /* Page Header */
         .page-header {
             background: linear-gradient(135deg, var(--accent-blue) 0%, var(--highlight-pink) 100%);
-            padding: 2rem 0;
+            padding: 8rem 0 4rem;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -86,228 +151,68 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="80">🥣</text></svg>') center / cover;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="80">🛍️</text></svg>') center / cover;
             opacity: 0.1;
             z-index: 1;
         }
 
         .page-header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             position: relative;
             z-index: 2;
         }
 
         .page-header p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--text-light);
             position: relative;
             z-index: 2;
         }
 
-        .breadcrumb {
-            background: transparent;
-            padding: 0;
-            margin: 1rem 0;
-        }
-
-        .breadcrumb-item+.breadcrumb-item::before {
-            content: ">";
-            color: var(--text-light);
-        }
-
-        .breadcrumb-item a {
-            color: var(--text-dark);
-            text-decoration: none;
-        }
-
-        .breadcrumb-item.active {
-            color: var(--text-light);
-        }
-
-        /* Main Layout */
-        .main-content {
-            display: flex;
-            gap: 2rem;
-            padding: 2rem 0;
-        }
-
-        /* Left Sidebar Filter */
-        .filter-sidebar {
-            width: 300px;
+        /* Filter Section */
+        .filter-section {
             background: white;
             border-radius: 20px;
             padding: 2rem;
+            margin: 2rem 0;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            height: calc(100vh - 140px);
-            overflow-y: auto;
-            z-index: 10;
-        }
-
-        .filter-sidebar h4 {
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .filter-section {
-            margin-bottom: 2rem;
-        }
-
-        .filter-section h6 {
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-            font-weight: 600;
-            border-bottom: 2px solid var(--accent-blue);
-            padding-bottom: 0.5rem;
-        }
-
-        .filter-option {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .filter-option:hover {
-            background: var(--accent-blue);
-        }
-
-        .filter-option input[type="checkbox"] {
-            margin-right: 0.5rem;
-            transform: scale(1.2);
-        }
-
-        .filter-option label {
-            cursor: pointer;
-            margin: 0;
-            flex: 1;
-        }
-
-        .price-range {
-            margin-bottom: 1rem;
-        }
-
-        .price-input {
-            width: 100%;
-            border: 2px solid var(--accent-blue);
-            border-radius: 10px;
-            padding: 0.5rem;
-            margin-bottom: 0.5rem;
-            background: white;
-        }
-
-        .price-input:focus {
-            outline: none;
-            border-color: var(--highlight-pink);
         }
 
         .filter-btn {
-            background: var(--highlight-pink);
-            border: none;
+            background-color: var(--bg-cream);
+            border: 2px solid var(--accent-blue);
             color: var(--text-dark);
-            font-weight: 600;
-            padding: 0.8rem 1.5rem;
+            padding: 0.5rem 1.5rem;
             border-radius: 25px;
-            width: 100%;
+            margin: 0.25rem;
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
-        .filter-btn:hover {
-            background: var(--accent-blue);
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--accent-blue);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .clear-btn {
-            background: transparent;
-            border: 2px solid var(--text-light);
-            color: var(--text-light);
-            margin-top: 1rem;
-        }
-
-        .clear-btn:hover {
-            background: var(--text-light);
-            color: white;
-        }
-
-        /* Products Area */
-        .products-area {
-            flex: 1;
-            margin-left: 320px;
-        }
-
-        .products-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            background: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .products-count {
-            color: var(--text-light);
-            font-size: 1rem;
-        }
-
-        .sort-section {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
         .sort-select {
             border: 2px solid var(--accent-blue);
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 0.5rem 1rem;
-            background: white;
+            background-color: white;
             color: var(--text-dark);
         }
 
         .sort-select:focus {
             outline: none;
             border-color: var(--highlight-pink);
-        }
-
-        .view-toggle {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .view-btn {
-            background: var(--bg-cream);
-            border: 2px solid var(--accent-blue);
-            color: var(--text-dark);
-            padding: 0.5rem 1rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .view-btn.active,
-        .view-btn:hover {
-            background: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(255, 197, 231, 0.3);
         }
 
         /* Product Cards */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
         .product-card {
             background: white;
             border-radius: 20px;
@@ -315,7 +220,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             border: 3px solid transparent;
-            position: relative;
+            height: 100%;
         }
 
         .product-card:hover {
@@ -325,7 +230,7 @@
         }
 
         .product-image {
-            height: 200px;
+            height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -338,36 +243,15 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            background: var(--highlight-pink);
+            background-color: var(--highlight-pink);
             color: var(--text-dark);
             padding: 0.3rem 0.8rem;
             border-radius: 15px;
             font-size: 0.8rem;
             font-weight: 600;
-            z-index: 5;
         }
 
-        .wishlist-btn {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: white;
-            border: none;
-            color: var(--text-light);
-            padding: 0.5rem;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 5;
-        }
-
-        .wishlist-btn:hover,
-        .wishlist-btn.active {
-            color: #ff6b6b;
-            transform: scale(1.1);
-        }
-
-        .product-info {
+        .product-card .card-body {
             padding: 1.5rem;
         }
 
@@ -375,10 +259,9 @@
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--text-dark);
-            font-size: 1.1rem;
         }
 
-        .product-material {
+        .product-category {
             color: var(--text-light);
             font-size: 0.9rem;
             margin-bottom: 0.5rem;
@@ -387,166 +270,112 @@
         .product-rating {
             color: #ffd700;
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .rating-text {
-            color: var(--text-light);
-            font-size: 0.9rem;
         }
 
         .product-price {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .current-price {
-            background: var(--accent-blue);
+            background-color: var(--accent-blue);
             color: var(--text-dark);
             font-weight: 600;
             padding: 0.5rem 1rem;
             border-radius: 15px;
+            display: inline-block;
+            margin-bottom: 1rem;
             font-size: 1.1rem;
         }
 
-        .original-price {
-            text-decoration: line-through;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .discount {
-            background: #ff6b6b;
-            color: white;
-            padding: 0.2rem 0.5rem;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .product-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
         .btn-cart {
-            background: var(--highlight-pink);
+            background-color: var(--highlight-pink);
             border: none;
             color: var(--text-dark);
             font-weight: 600;
             padding: 0.8rem 1.5rem;
             border-radius: 25px;
             transition: all 0.3s ease;
-            flex: 1;
-            cursor: pointer;
+            width: 100%;
         }
 
         .btn-cart:hover {
-            background: var(--accent-blue);
+            background-color: var(--accent-blue);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .btn-quick-view {
-            background: var(--bg-cream);
-            border: 2px solid var(--accent-blue);
-            color: var(--text-dark);
-            padding: 0.8rem;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-quick-view:hover {
-            background: var(--accent-blue);
-            transform: scale(1.1);
-        }
-
         /* Pagination */
-        .pagination-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 3rem;
-        }
-
         .pagination {
-            display: flex;
-            gap: 0.5rem;
+            margin-top: 3rem;
+            justify-content: center;
         }
 
-        .page-btn {
-            background: white;
+        .page-link {
+            background-color: white;
             border: 2px solid var(--accent-blue);
             color: var(--text-dark);
             padding: 0.5rem 1rem;
+            margin: 0 0.2rem;
             border-radius: 10px;
-            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .page-btn:hover,
-        .page-btn.active {
-            background: var(--accent-blue);
+        .page-link:hover,
+        .page-link.active {
+            background-color: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: var(--text-dark);
             transform: translateY(-2px);
         }
 
+        /* Section Spacing */
+        .section-padding {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--accent-blue), var(--highlight-pink));
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
         /* Responsive Design */
-        @media (max-width: 1024px) {
-            .filter-sidebar {
-                width: 250px;
-            }
-
-            .products-area {
-                margin-left: 270px;
-            }
-        }
-
         @media (max-width: 768px) {
-            .filter-sidebar {
-                position: static;
-                width: 100%;
-                height: auto;
-                margin-bottom: 2rem;
+            .page-header h1 {
+                font-size: 2.5rem;
             }
 
-            .products-area {
-                margin-left: 0;
+            .filter-section {
+                text-align: center;
             }
 
-            .main-content {
-                flex-direction: column;
-            }
-
-            .products-header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 1rem;
+            .filter-btn {
+                margin: 0.5rem 0.25rem;
             }
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Loading Animation */
+        .loading-card {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
         }
 
-        .fade-in-up {
-            animation: fadeInUp 0.6s ease-out;
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
         }
     </style>
 </head>
@@ -555,7 +384,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand bounce-hover" href="index.html">
                 <i class="fas fa-paw"></i> Bowlfull Buddies
             </a>
 
@@ -573,10 +402,10 @@
                             Shop
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="product_view.html"><i class="fas fa-dog"></i> Dogs</a>
-                            </li>
-                            <li><a class="dropdown-item" href="product_view.html"><i class="fas fa-cat"></i> Cats</a>
-                            </li>
+                            <li><a class="dropdown-item" href="#" onclick="filterProducts('dogs')"><i
+                                        class="fas fa-dog"></i> Dogs</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="filterProducts('cats')"><i
+                                        class="fas fa-cat"></i> Cats</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -587,7 +416,7 @@
                     </li>
                 </ul>
 
-                <button class="btn btn-login">
+                <button class="btn btn-login bounce-hover">
                     <a href="login.html">
                         <i class="fas fa-user"></i> Login / Register
                     </a>
@@ -599,281 +428,200 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="product_view.html">Shop</a></li>
-                    <li class="breadcrumb-item active">Dog Bowls</li>
-                </ol>
-            </nav>
-            <h1 class="fade-in-up">Dog Bowls</h1>
-            <p class="fade-in-up">Premium feeding solutions for your furry friends</p>
+            <h1 class="fade-in-up">Our Products</h1>
+            <p class="fade-in-up">Everything your furry friends need for a happy life</p>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="main-content">
-            <!-- Left Sidebar Filter -->
-            <div class="filter-sidebar">
-                <h4><i class="fas fa-filter"></i> Filters</h4>
-
-                <!-- Material Filter -->
-                <div class="filter-section">
-                    <h6>Material</h6>
-                    <div class="filter-option">
-                        <input type="checkbox" id="stainless" value="stainless">
-                        <label for="stainless">Stainless Steel</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="ceramic" value="ceramic">
-                        <label for="ceramic">Ceramic</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="plastic" value="plastic">
-                        <label for="plastic">Plastic</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="silicone" value="silicone">
-                        <label for="silicone">Silicone</label>
-                    </div>
+    <!-- Filter Section -->
+    <section class="container">
+        <div class="filter-section fade-in-up">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h5 class="mb-3">Filter by Category:</h5>
+                    <button class="filter-btn active" onclick="filterProducts('all')">
+                        <i class="fas fa-th"></i> All Products
+                    </button>
+                    <button class="filter-btn" onclick="filterProducts('dogs')">
+                        <i class="fas fa-dog"></i> Dogs
+                    </button>
+                    <button class="filter-btn" onclick="filterProducts('cats')">
+                        <i class="fas fa-cat"></i> Cats
+                    </button>
+                    <button class="filter-btn" onclick="filterProducts('toys')">
+                        <i class="fas fa-baseball-ball"></i> Toys
+                    </button>
+                    <button class="filter-btn" onclick="filterProducts('food')">
+                        <i class="fas fa-utensils"></i> Food & Treats
+                    </button>
+                    <button class="filter-btn" onclick="filterProducts('accessories')">
+                        <i class="fas fa-collar"></i> Accessories
+                    </button>
                 </div>
-
-                <!-- Size Filter -->
-                <div class="filter-section">
-                    <h6>Size</h6>
-                    <div class="filter-option">
-                        <input type="checkbox" id="small" value="small">
-                        <label for="small">Small (Up to 15lbs)</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="medium" value="medium">
-                        <label for="medium">Medium (15-50lbs)</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="large" value="large">
-                        <label for="large">Large (50-90lbs)</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="xl" value="xl">
-                        <label for="xl">Extra Large (90lbs+)</label>
-                    </div>
-                </div>
-
-                <!-- Features Filter -->
-                <div class="filter-section">
-                    <h6>Features</h6>
-                    <div class="filter-option">
-                        <input type="checkbox" id="nonslip" value="nonslip">
-                        <label for="nonslip">Non-Slip Base</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="elevated" value="elevated">
-                        <label for="elevated">Elevated Design</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="slow-feed" value="slow-feed">
-                        <label for="slow-feed">Slow Feeding</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="dishwasher" value="dishwasher">
-                        <label for="dishwasher">Dishwasher Safe</label>
-                    </div>
-                </div>
-
-                <!-- Price Range -->
-                <div class="filter-section">
-                    <h6>Price Range</h6>
-                    <div class="price-range">
-                        <input type="number" class="price-input" placeholder="Min Price" id="minPrice">
-                        <input type="number" class="price-input" placeholder="Max Price" id="maxPrice">
-                    </div>
-                </div>
-
-                <!-- Brand Filter -->
-                <div class="filter-section">
-                    <h6>Brand</h6>
-                    <div class="filter-option">
-                        <input type="checkbox" id="pawsome" value="pawsome">
-                        <label for="pawsome">Pawsome</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="furbaby" value="furbaby">
-                        <label for="furbaby">FurBaby</label>
-                    </div>
-                    <div class="filter-option">
-                        <input type="checkbox" id="premium-pet" value="premium-pet">
-                        <label for="premium-pet">Premium Pet</label>
-                    </div>
-                </div>
-
-                <!-- Filter Actions -->
-                <button class="filter-btn" onclick="applyFilters()">
-                    <i class="fas fa-search"></i> Apply Filters
-                </button>
-                <button class="filter-btn clear-btn" onclick="clearFilters()">
-                    <i class="fas fa-times"></i> Clear All
-                </button>
-            </div>
-
-            <!-- Products Area -->
-            <div class="products-area">
-                <!-- Products Header -->
-                <div class="products-header">
-                    <div class="products-info">
-                        <h5>Dog Bowls</h5>
-                        <p class="products-count">Showing <span id="showing-count">12</span> of <span
-                                id="total-count">24</span> products</p>
-                    </div>
-                    <div class="sort-section">
-                        <label>Sort by:</label>
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center">
+                        <label class="me-2">Sort by:</label>
                         <select class="sort-select" onchange="sortProducts(this.value)">
-                            <option value="popularity">Popularity</option>
+                            <option value="name">Name</option>
                             <option value="price-low">Price: Low to High</option>
                             <option value="price-high">Price: High to Low</option>
-                            <option value="rating">Customer Rating</option>
-                            <option value="newest">Newest First</option>
+                            <option value="rating">Rating</option>
                         </select>
-                        <div class="view-toggle">
-                            <button class="view-btn active" onclick="setGridView()">
-                                <i class="fas fa-th"></i>
-                            </button>
-                            <button class="view-btn" onclick="setListView()">
-                                <i class="fas fa-list"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Products Grid -->
-                <div class="products-grid" id="products-grid">
-                    <!-- Products will be loaded here -->
-                </div>
-
-                <!-- Pagination -->
-                <div class="pagination-container">
-                    <div class="pagination" id="pagination">
-                        <!-- Pagination will be loaded here -->
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="section-padding">
+        <a href="product_view.html" style="text-decoration: none;">
+
+            <div class="container">
+                <div class="row" id="products-grid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </a>
+    </section>
+
+    <!-- Pagination -->
+    <nav aria-label="Products pagination">
+        <ul class="pagination" id="pagination">
+            <!-- Pagination will be loaded here -->
+        </ul>
+    </nav>
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        const productsPerPage = 6;
-        let currentPage = 1;
-        let filteredProducts = [...dogBowls];
+        // Sample products data
+        const products = [
+            {
+                id: 1,
+                name: "Premium Dog Treats",
+                category: "dogs",
+                type: "food",
+                price: 24.99,
+                rating: 5,
+                emoji: "🦴",
+                gradient: "linear-gradient(45deg, #ffeaa7, #fab1a0)",
+                badge: "Best Seller"
+            },
+            {
+                id: 2,
+                name: "Interactive Cat Toy",
+                category: "cats",
+                type: "toys",
+                type: "toys",
+                price: 14.99,
+                rating: 4,
+                emoji: "🐭",
+                gradient: "linear-gradient(45deg, #a29bfe, #74b9ff)",
+                badge: "Hot"
+            },
+            {
+                id: 3,
+                name: "Dog Collar",
+                category: "dogs",
+                type: "accessories",
+                price: 9.99,
+                rating: 3,
+                emoji: "🎽",
+                gradient: "linear-gradient(45deg, #55efc4, #81ecec)",
+                badge: "New"
+            },
+            {
+                id: 4,
+                name: "Cat Food Pack",
+                category: "cats",
+                type: "food",
+                price: 19.99,
+                rating: 5,
+                emoji: "🥫",
+                gradient: "linear-gradient(45deg, #ffeaa7, #fd79a8)",
+                badge: "Bestseller"
+            },
+            {
+                id: 5,
+                name: "Chew Toy",
+                category: "dogs",
+                type: "toys",
+                price: 7.99,
+                rating: 4,
+                emoji: "🧸",
+                gradient: "linear-gradient(45deg, #e17055, #fdcb6e)",
+                badge: "Fun"
+            },
+            {
+                id: 6,
+                name: "Cat Collar",
+                category: "cats",
+                type: "accessories",
+                price: 8.99,
+                rating: 4,
+                emoji: "🎀",
+                gradient: "linear-gradient(45deg, #fab1a0, #ff7675)",
+                badge: "Trending"
+            }
+        ];
 
-        // Initial render
-        document.addEventListener("DOMContentLoaded", () => {
-            renderProducts();
-            renderPagination();
-        });
+        let filteredProducts = [...products];
+        let currentPage = 1;
+        const itemsPerPage = 4;
 
         function renderProducts() {
-            const start = (currentPage - 1) * productsPerPage;
-            const end = start + productsPerPage;
-            const displayProducts = filteredProducts.slice(start, end);
+            const grid = document.getElementById("products-grid");
+            grid.innerHTML = "";
 
-            const container = document.getElementById("products-grid");
-            container.innerHTML = "";
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const currentItems = filteredProducts.slice(start, end);
 
-            displayProducts.forEach(product => {
-                container.innerHTML += `
-                <div class="product-card fade-in-up" style="background: ${product.gradient}">
-                    <div class="product-image">
-                        ${product.emoji}
-                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ""}
-                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-title">${product.name}</div>
-                        <div class="product-material">${capitalize(product.material)} • ${capitalize(product.size)}</div>
-                        <div class="product-rating">
-                            ${'★'.repeat(product.rating)}${'☆'.repeat(5 - product.rating)}
-                            <span class="rating-text">(${product.reviews} reviews)</span>
-                        </div>
-                        <div class="product-price">
-                            <div class="current-price">₹${product.price.toFixed(2)}</div>
-                            ${product.originalPrice ? `<div class="original-price">₹${product.originalPrice}</div>` : ""}
-                            ${product.discount ? `<div class="discount">${product.discount}</div>` : ""}
-                        </div>
-                        <div class="product-actions">
-                            <button class="btn-cart"><i class="fas fa-cart-plus"></i> Add</button>
-                            <button class="btn-quick-view"><i class="fas fa-eye"></i></button>
-                        </div>
-                    </div>
-                </div>
-            `;
+            currentItems.forEach(product => {
+                const card = document.createElement("div");
+                card.className = "col-md-6 col-lg-4 col-xl-3 mb-4";
+                card.innerHTML = `
+          <div class="product-card h-100">
+            <div class="product-image" style="background: ${product.gradient}">
+              ${product.emoji}
+              <span class="product-badge">${product.badge}</span>
+            </div>
+            <div class="card-body">
+              <h5 class="product-title">${product.name}</h5>
+              <p class="product-category">${product.category} / ${product.type}</p>
+              <div class="product-rating">${'★'.repeat(product.rating)}${'☆'.repeat(5 - product.rating)}</div>
+              <div class="product-price">₹${product.price.toFixed(2)}</div>
+              <button class="btn-cart bounce-hover"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+            </div>
+          </div>
+        `;
+                grid.appendChild(card);
             });
 
-            // Update counts
-            document.getElementById("showing-count").textContent = displayProducts.length;
-            document.getElementById("total-count").textContent = filteredProducts.length;
+            renderPagination();
         }
 
-        function renderPagination() {
-            const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
-            const paginationContainer = document.getElementById("pagination");
-            paginationContainer.innerHTML = "";
+        function filterProducts(filter) {
+            document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+            event.target.classList.add("active");
 
-            for (let i = 1; i <= pageCount; i++) {
-                const btn = document.createElement("button");
-                btn.className = "page-btn" + (i === currentPage ? " active" : "");
-                btn.textContent = i;
-                btn.onclick = () => {
-                    currentPage = i;
-                    renderProducts();
-                    renderPagination();
-                };
-                paginationContainer.appendChild(btn);
+            if (filter === 'all') {
+                filteredProducts = [...products];
+            } else {
+                filteredProducts = products.filter(p => p.category === filter || p.type === filter);
             }
-        }
-
-        function applyFilters() {
-            const materialFilters = getCheckedValues(["stainless", "ceramic", "plastic", "silicone"]);
-            const sizeFilters = getCheckedValues(["small", "medium", "large", "xl"]);
-            const featureFilters = getCheckedValues(["nonslip", "elevated", "slow-feed", "dishwasher"]);
-            const brandFilters = getCheckedValues(["pawsome", "furbaby", "premium-pet"]);
-
-            const minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
-            const maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
-
-            filteredProducts = dogBowls.filter(product => {
-                return (
-                    (materialFilters.length === 0 || materialFilters.includes(product.material)) &&
-                    (sizeFilters.length === 0 || sizeFilters.includes(product.size)) &&
-                    (featureFilters.length === 0 || featureFilters.every(f => product.features.includes(f))) &&
-                    (brandFilters.length === 0 || brandFilters.includes(product.brand)) &&
-                    (product.price >= minPrice && product.price <= maxPrice)
-                );
-            });
 
             currentPage = 1;
             renderProducts();
-            renderPagination();
         }
 
-        function clearFilters() {
-            document.querySelectorAll('.filter-sidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
-            document.getElementById("minPrice").value = "";
-            document.getElementById("maxPrice").value = "";
-            filteredProducts = [...dogBowls];   
-            currentPage = 1;
-            renderProducts();
-            renderPagination();
-        }
-
-        function getCheckedValues(ids) {
-            return ids.filter(id => document.getElementById(id).checked);
-        }
-
-        function sortProducts(type) {
-            switch (type) {
+        function sortProducts(value) {
+            switch (value) {
+                case "name":
+                    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
                 case "price-low":
                     filteredProducts.sort((a, b) => a.price - b.price);
                     break;
@@ -883,33 +631,32 @@
                 case "rating":
                     filteredProducts.sort((a, b) => b.rating - a.rating);
                     break;
-                case "newest":
-                    filteredProducts.reverse(); // Assuming last is newest
-                    break;
-                case "popularity":
-                default:
-                    filteredProducts.sort((a, b) => b.reviews - a.reviews);
-                    break;
             }
-            currentPage = 1;
             renderProducts();
         }
 
-        function capitalize(word) {
-            return word.charAt(0).toUpperCase() + word.slice(1);
+        function renderPagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+            for (let i = 1; i <= totalPages; i++) {
+                const li = document.createElement("li");
+                li.className = "page-item";
+                const btn = document.createElement("button");
+                btn.className = `page-link ${i === currentPage ? "active" : ""}`;
+                btn.innerText = i;
+                btn.onclick = () => {
+                    currentPage = i;
+                    renderProducts();
+                };
+                li.appendChild(btn);
+                pagination.appendChild(li);
+            }
         }
 
-        function setGridView() {
-            document.getElementById("products-grid").classList.remove("list-view");
-            document.querySelectorAll(".view-btn").forEach(btn => btn.classList.remove("active"));
-            event.currentTarget.classList.add("active");
-        }
-
-        function setListView() {
-            document.getElementById("products-grid").classList.add("list-view");
-            document.querySelectorAll(".view-btn").forEach(btn => btn.classList.remove("active"));
-            event.currentTarget.classList.add("active");
-        }
+        // Initial Render
+        window.onload = renderProducts;
     </script>
 </body>
 
